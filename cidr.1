@@ -1,0 +1,35 @@
+.TH CIDR 1
+.SH NAME
+cidr \- convert between CIDR networks and IP ranges
+.SH SYNOPSIS
+.B cidr
+[
+.B -cer
+] [
+.I file ...
+]
+.SH DESCRIPTION
+.I Cidr
+reads single IP addresses, IP ranges and CIDR networks and outputs
+them as IP ranges or CIDR networks using as few lines as possible.
+.TP
+.B -c
+use CIDR notation
+.TP
+.B -e
+enumerate
+.TP
+.B -r
+output as IP ranges
+.SH EXAMPLES
+Benchmark by converting IP range to 62 CIDR blocks and backwards:
+.IP
+.EX
+echo 0.0.0.1-255.255.255.254 | cidr | cidr -r
+.EE
+.TP
+Enumerate hosts on local network via DNS.
+.IP
+.EX
+echo 192.168.1.1/24 | cidr -e | xargs -n 1 host | grep -v NXDOMAIN
+.EE

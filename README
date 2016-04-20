@@ -1,0 +1,8 @@
+`cidr' is an utility to convert between IP ranges and CIDR blocks.
+
+`cidr' replaces another public domain tool cidr-convert.c [1], but it
+is not based on it. Instead of complex tree data structure and recursive
+printing algorithm, `cidr' uses linked list, insertion sort and iterative
+algorithm for printing.
+
+[1] http://www.spamshield.org/cidr-convert.c
