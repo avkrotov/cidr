@@ -142,23 +142,21 @@ static void output(void) {
 	Node *node;
 	in_addr_t lo, hi;
 
-	if(head == NULL)
-		return;
-	lo = head->lo;
-	hi = head->hi;
-	for(node = head->next; node != NULL; node = node->next) {
-		if(node->hi <= hi)
-			continue;
-		/* hi != 255.255.255.255, otherwise previous check would not pass */
-		if(node->lo <= hi + 1) {
-			hi = node->hi;
-			continue;
-		}
-		printrange(lo, hi);
+	node = head;
+	while(node != NULL) {
 		lo = node->lo;
 		hi = node->hi;
+
+		while(node != NULL && node->hi <= hi)
+			node = node->next;
+		while(node != NULL && node->lo <= hi + 1) {
+			hi = node->hi;
+			node = node->next;
+		}
+		printrange(lo, hi);
+		if(node != NULL)
+			node = node->next;
 	}
-	printrange(lo, hi);
 }
 
 int main(int argc, char *argv[]) {
