@@ -139,23 +139,19 @@ static void input(FILE *fp) {
 static void (*printrange)(in_addr_t lo, in_addr_t hi) = cidrrange;
 
 static void output(void) {
-	Node *node;
-	in_addr_t lo, hi;
-
-	node = head;
-	while(node != NULL) {
-		lo = node->lo;
-		hi = node->hi;
-
-		while(node != NULL && node->hi <= hi)
-			node = node->next;
-		while(node != NULL && node->lo <= hi + 1) {
-			hi = node->hi;
-			node = node->next;
+	while(head != NULL) {
+		in_addr_t lo = head->lo;
+		in_addr_t hi = head->hi;
+		for(;;) {
+			if((head = head->next) == NULL)
+				break;
+			if(head->hi <= hi)
+				continue;
+			if(head->lo > hi + 1)
+				break;
+			hi = head->hi;
 		}
 		printrange(lo, hi);
-		if(node != NULL)
-			node = node->next;
 	}
 }
 
