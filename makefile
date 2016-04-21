@@ -8,6 +8,7 @@ cidr: cidr.c
 install: cidr cidr.1
 	cp cidr $(DESTDIR)$(PREFIX)/bin/cidr
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/cidr
+	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
 	cp cidr.1 $(DESTDIR)$(MANPREFIX)/man1/cidr.1
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/cidr.1
 
