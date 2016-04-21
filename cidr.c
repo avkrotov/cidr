@@ -142,6 +142,8 @@ static void output(void) {
 	Node *node;
 	in_addr_t lo, hi;
 
+	if(head == NULL)
+		return;
 	lo = head->lo;
 	hi = head->hi;
 	for(node = head->next; node != NULL; node = node->next) {
