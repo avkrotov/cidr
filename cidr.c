@@ -149,7 +149,8 @@ static void output(void) {
 	for(node = head->next; node != NULL; node = node->next) {
 		if(node->hi <= hi)
 			continue;
-		if(node->lo <= hi + 1 && node->hi > hi) {
+		/* hi != 255.255.255.255, otherwise previous check would not pass */
+		if(node->lo <= hi + 1) {
 			hi = node->hi;
 			continue;
 		}
