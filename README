@@ -3,6 +3,9 @@
 `cidr' replaces another public domain tool cidr-convert.c [1], but it
 is not based on it. Instead of complex tree data structure and recursive
 printing algorithm, `cidr' uses linked list, insertion sort and iterative
-algorithm for printing.
+algorithm for printing. Also, `cidr' can convert CIDR blocks back into
+IP ranges and enumerate IP addresses, so it replaces part of netenum
+[2] functions.
 
 [1] http://www.spamshield.org/cidr-convert.c
+[2] http://phenoelit.org/irpas/docu.html#netenum
